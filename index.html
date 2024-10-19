@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap">
+    <title>Fortnite Featured Islands</title>
+    <style>
+        body {
+            font-family: 'Fredoka One', cursive;
+            background-color: #1c1c1c;
+            color: #ffffff;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #ffcc00;
+        }
+
+        .island-card {
+            background: #2c2c2c;
+            border: 2px solid #ffcc00;
+            border-radius: 10px;
+            margin: 20px 0;
+            padding: 15px;
+            position: relative;
+            transition: transform 0.2s;
+        }
+
+        .island-card:hover {
+            transform: scale(1.02);
+        }
+
+        .island-card img {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .tag {
+            background: #ffcc00;
+            color: #000;
+            border-radius: 5px;
+            padding: 5px 10px;
+            margin: 2px;
+        }
+
+        .copy-btn {
+            background-color: #ffcc00;
+            color: #000;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 15px;
+            cursor: pointer;
+            margin-top: 10px;
+            display: inline-block;
+        }
+
+        .copied-message {
+            display: none;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #28a745;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Featured Islands</h1>
+    <div id="island-container"></div>
+
+    <script>
+        const featuredIslands = [
+            {
+                "code": "6361-2584-3679",
+                "title": "The Forbidden Hollows Gun Game",
+                "description": "Up to 30 player Gun Game in the hollows that are forbidden! Be the first player who get 25 eliminations to win the game.",
+                "creator": "yolodisorder",
+                "image": "https://cdn-0001.qstv.on.epicgames.com/EvymaPjMuSbQwfpkUM/image/screen_comp.jpeg",
+                "tags": ["free for all", "gun game", "pvp", "shooter"],
+            },
+            {
+                "code": "0248-1296-0063",
+                "title": "THE ULTIMATE DOMINATION",
+                "description": "Play with your team and invade the different areas of Domination! The first team to score 500 pts WINS 🥇!",
+                "creator": "keenan",
+                "image": "https://cdn-0001.qstv.on.epicgames.com/IUvuxGSYeMewtSXAss/image/screen_comp.jpeg",
+                "tags": ["action", "battle", "point capture", "team deathmatch"],
+            },
+            {
+                "code": "5492-6701-9022",
+                "title": "// LOOP BEASTS //",
+                "description": "Use your Pickaxe or other special weapons to knock your opponent and throw them off the map! 🗺️ 11 Maps! 🌟 Trail Store! 💫Special Items!",
+                "creator": "mobile-scrap",
+                "image": "https://cdn-0001.qstv.on.epicgames.com/SsPdXqJJMylGWOQaqr/image/screen_comp.jpeg",
+                "tags": ["action", "battle", "minigame", "pvp"],
+            },
+            {
+                "code": "8189-8245-1973",
+                "title": "🌈Color Switch Deathrace🏃‍♂️💨",
+                "description": "Stand on the color that pops up on screen to survive and race to the finish line!",
+                "creator": "meep",
+                "image": "https://cdn-0001.qstv.on.epicgames.com/RxYGHuvvzHdOtHiMQZ/image/screen_comp.jpeg",
+                "tags": ["deathrun", "minigame", "parkour", "party game"],
+            }
+        ];
+
+        const islandContainer = document.getElementById('island-container');
+
+        featuredIslands.forEach(island => {
+            const islandCard = document.createElement('div');
+            islandCard.className = 'island-card';
+
+            islandCard.innerHTML = `
+                <img src="${island.image}" alt="${island.title}">
+                <h2>${island.title}</h2>
+                <p>${island.description}</p>
+                <p><strong>Creator:</strong> ${island.creator}</p>
+                <div class="tags">${island.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}</div>
+                <button class="copy-btn" onclick="copyToClipboard('${island.code}', this)">Copy Code</button>
+                <div class="copied-message">Copied! 🎉✨</div>
+            `;
+
+            islandContainer.appendChild(islandCard);
+        });
+
+        function copyToClipboard(code, button) {
+            navigator.clipboard.writeText(code).then(() => {
+                const copiedMessage = button.nextElementSibling;
+                copiedMessage.style.display = 'inline-block';
+                setTimeout(() => {
+                    copiedMessage.style.display = 'none';
+                }, 2000);
+            });
+        }
+    </script>
+</body>
+</html>
